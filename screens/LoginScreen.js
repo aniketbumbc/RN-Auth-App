@@ -1,5 +1,5 @@
 import AuthContent from '../components/Auth/AuthContent';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import LoadingOverlay from '../components/ui/LoadingOverlay';
 import { login } from '../utils/auth';
 import { Alert } from 'react-native';
@@ -14,11 +14,11 @@ function LoginScreen() {
     try {
       const token = await login(email, password);
       authCtx.authenticate(token);
+      setIsLoading(false);
     } catch (error) {
       Alert.alert('Authentication failed!!!!!! Please try again later!!!');
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   }
 
   if (isLoading) {
