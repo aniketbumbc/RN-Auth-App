@@ -6,6 +6,7 @@ import SignupScreen from './screens/SignupScreen';
 import { Alert, StyleSheet, View } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
+import AuthContextProvider from './store/auth-context';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,9 +42,11 @@ function AuthenticatedStack() {
 
 function Navigation() {
   return (
-    <NavigationContainer>
-      <AuthStack />
-    </NavigationContainer>
+    <AuthContextProvider>
+      <NavigationContainer>
+        <AuthStack />
+      </NavigationContainer>
+    </AuthContextProvider>
   );
 }
 
